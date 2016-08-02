@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CheckSimLogin</string>
+    <string name="register_account_title">Register User Account</string>
 </resources>
