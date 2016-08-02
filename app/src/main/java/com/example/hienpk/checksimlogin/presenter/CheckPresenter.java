@@ -1,19 +1,21 @@
 package com.example.hienpk.checksimlogin.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.telephony.TelephonyManager;
 
 import com.example.hienpk.checksimlogin.view.ICheckView;
+import com.example.hienpk.checksimlogin.view.LoginActivity;
 
 /**
  * Created by HienPK on 8/2/2016.
  */
-public class Presenter implements IVPresenter, IMPresenter
+public class CheckPresenter implements ICheckPresenter
 {
 
     ICheckView view;
 
-    public Presenter(ICheckView view)
+    public CheckPresenter(ICheckView view)
     {
         this.view = view;
     }
@@ -27,7 +29,7 @@ public class Presenter implements IVPresenter, IMPresenter
         switch (simState)
         {
             case TelephonyManager.SIM_STATE_ABSENT:
-
+                view.showSimAbsentDialog();
                 break;
             case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
                 // do something
@@ -47,5 +49,17 @@ public class Presenter implements IVPresenter, IMPresenter
         }
     }
 
+    @Override
+    public void onStartLoginActivity()
+    {
+        Intent intent = new Intent(view.getContext(), LoginActivity.class);
+        view.getContext().startActivity(intent);
 
+    }
+
+    @Override
+    public void onStartRegisterActivity()
+    {
+        //
+    }
 }

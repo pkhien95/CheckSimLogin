@@ -5,17 +5,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.hienpk.checksimlogin.R;
-import com.example.hienpk.checksimlogin.presenter.IVPresenter;
-import com.example.hienpk.checksimlogin.presenter.Presenter;
+import com.example.hienpk.checksimlogin.presenter.CheckPresenter;
 
-public class CheckActivity extends AppCompatActivity implements ICheckView
+public class CheckActivity extends AppCompatActivity implements ICheckView, View.OnClickListener
 {
-    private IVPresenter presenter;
+    private CheckPresenter presenter;
     private Button btnLogin, btnRegister;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,13 +24,17 @@ public class CheckActivity extends AppCompatActivity implements ICheckView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
 
-        presenter = new Presenter(this);
+        presenter = new CheckPresenter(this);
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister = (Button) findViewById(R.id.btnRegister);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         btnLogin.setVisibility(View.INVISIBLE);
         btnRegister.setVisibility(View.INVISIBLE);
+        btnLogin.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
+        setSupportActionBar(toolbar);
 
         //Check if SIM is ready
         presenter.onCheckSim();
@@ -62,5 +67,20 @@ public class CheckActivity extends AppCompatActivity implements ICheckView
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        switch (view.getId())
+        {
+            case R.id.btnLogin:
+                presenter.onStartLoginActivity();
+                break;
+
+            case R.id.btnRegister:
+                presenter.onStartRegisterActivity();
+                break;
+        }
     }
 }
