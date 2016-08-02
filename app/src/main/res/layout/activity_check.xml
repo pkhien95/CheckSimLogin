@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CheckActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".view.CheckActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -19,17 +20,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Detected a new SIM Applet"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textStyle="bold"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/holo_blue_bright"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:background="@android:color/holo_blue_bright"/>
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -37,27 +38,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:gravity="center">
+        android:paddingRight="30dp">
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Login"
-            android:background="@drawable/rounded_button"
             android:layout_marginBottom="20dp"
-            android:textStyle="bold"
-            android:shadowRadius="0"/>
+            android:background="@drawable/rounded_button"
+            android:shadowRadius="0"
+            android:text="Login"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Register new account"
             android:background="@drawable/rounded_button"
+            android:text="Register new account"
             android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>
