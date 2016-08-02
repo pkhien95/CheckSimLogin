@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hienpk.checksimlogin">
+          package="com.example.hienpk.checksimlogin">
 
     <application
         android:allowBackup="true"
@@ -9,17 +9,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.CheckActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".view.RegiseterAccountActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.LoginActivity">
         </activity>
+
+        <provider
+            android:name=".model.UserInfoProvider"
+            android:authorities="com.example.hienpk.provider.UserInfoProvider"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="true"/>
+
     </application>
+
 
 </manifest>

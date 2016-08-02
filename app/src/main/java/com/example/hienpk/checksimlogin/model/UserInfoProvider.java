@@ -9,42 +9,39 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import java.security.Provider;
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by TungHH on 8/2/2016.
  */
 public class UserInfoProvider extends ContentProvider {
 
-    private static final String TAG = UserInfoProvider.class.getSimpleName();
-
     public static final String PROVIDER_NAME
-            = "com.example.hienpk.checksimlogin.provider.UserInfoProvider";
+            = "com.example.hienpk.provider.UserInfoProvider";
     public static final String URL
-            = "content://" + PROVIDER_NAME + "/UserInfo";
+            = "content://" + PROVIDER_NAME + "/USERINFO";
     public static final Uri URI = Uri.parse(URL);
-
+    private static final String TAG = UserInfoProvider.class.getSimpleName();
     // init urimatcher for mapping url
     private static final UriMatcher URI_MATCHER
             = new UriMatcher(UriMatcher.NO_MATCH);
 
     private static final int USERS = 1;
     private static final int USER_ID = 2;
-    static {
-        URI_MATCHER.addURI(PROVIDER_NAME, "UserInfo", USERS);
-        URI_MATCHER.addURI(PROVIDER_NAME, "UserInfo/#", USER_ID);
-    }
-
-
+    private static final int USER_NAME = 3;
     // project map contains data filter by column
     public static HashMap<String, String> USERINFO_PROJECTION_MAP
             = new HashMap<>();
+
+    static {
+        URI_MATCHER.addURI(PROVIDER_NAME, "USERINFO", USERS);
+        URI_MATCHER.addURI(PROVIDER_NAME, "USERINFO/#", USER_ID);
+
+    }
+
     static {
         USERINFO_PROJECTION_MAP.put(
                 UserInfoEntry._ID, UserInfoEntry._ID);
@@ -78,7 +75,8 @@ public class UserInfoProvider extends ContentProvider {
         }catch (SQLiteException e){
             return false;
         }
-        if (mSQLiteDb == null){
+        if (mSQLiteDb != null)
+        {
             Log.d(TAG, "Open database successed");
             return true;
         }else{
@@ -94,6 +92,8 @@ public class UserInfoProvider extends ContentProvider {
 
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         builder.setTables(UserInfoEntry.TABLE_NAME);
+        Log.d(TAG, "querying");
+
         switch (URI_MATCHER.match(uri)){
             case USERS:
                 builder.setProjectionMap(USERINFO_PROJECTION_MAP);
@@ -102,7 +102,13 @@ public class UserInfoProvider extends ContentProvider {
                 builder.appendWhere(UserInfoEntry._ID + " = "
                         + uri.getPathSegments().get(1));
                 break;
+            case USER_NAME:
+                Log.d(TAG, "USER_NAME");
+                builder.appendWhere(UserInfoEntry.COLUMN_USER_NAME + " = "
+                        + uri.getPathSegments().get(1));
+                break;
             default:
+                Log.d(TAG, "DEFAULT");
                 throw new IllegalArgumentException("Cannot mapping request");
         }
         if (order == null || order.isEmpty())
@@ -120,6 +126,7 @@ public class UserInfoProvider extends ContentProvider {
             case USERS:
                 return "vnd.android.cursor.dir/vnd.example.hienpk.checksimlogin.provider.UserInfoProvider";
             case USER_ID:
+            case USER_NAME:
                 return "vnd.android.cursor.item/vnd.example.hienpk.checksimlogin.provider.UserInfoProvider";
             default:
                 throw new IllegalArgumentException("Cannot mapping request");
