@@ -5,5 +5,5 @@ package com.example.hienpk.checksimlogin.presenter;
  */
 public interface IVPresenter
 {
-    void onShowView();
+    void onCheckSim();
 }
