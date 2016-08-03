@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  Gradient Bg for spinner -->
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#d0d0d0"
+                android:endColor="#f2f2f2" />
+            <corners android:radius="3dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width="2dp" android:height="2dp"
+                android:color="#8a8a8a" />
+            <gradient
+                android:angle="90"
+                android:startColor="#d0d0d0"
+                android:endColor="#f2f2f2" />
+            <corners android:radius="3dp"/>
+        </shape>
+    </item>
+    <item android:left="1.5dp"
+        android:bottom="1.5dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#d0d0d0"
+                android:endColor="#f2f2f2" />
+            <corners android:radius="3dp"/>
+        </shape>
+    </item>
+</layer-list>
