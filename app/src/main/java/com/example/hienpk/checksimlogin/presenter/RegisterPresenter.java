@@ -1,22 +1,120 @@
 package com.example.hienpk.checksimlogin.presenter;
 
+import android.app.Activity;
+import android.util.Log;
+
+import com.example.hienpk.checksimlogin.model.ILoginModel;
+import com.example.hienpk.checksimlogin.model.IRegisterModel;
+import com.example.hienpk.checksimlogin.model.LoginModel;
+import com.example.hienpk.checksimlogin.model.RegisterModel;
 import com.example.hienpk.checksimlogin.model.UserInfo;
+import com.example.hienpk.checksimlogin.view.IRegisterView;
+
+import java.util.Calendar;
+import java.util.zip.Inflater;
 
 /**
  * Created by HienPK on 8/3/2016.
  */
 public class RegisterPresenter implements IRegisterPresenter
 {
+    private static final String TAG = RegisterPresenter.class.getSimpleName();
 
-    @Override
-    public void checkUsername(String userName)
-    {
+    private IRegisterView iView;
+    private IRegisterModel iModel;
+    private UserInfo mInfo;
 
+    public RegisterPresenter(IRegisterView view){
+        iView = view;
+        iModel = new RegisterModel();
+        mInfo = new UserInfo();
     }
 
     @Override
-    public void addAccount(UserInfo userInfo)
+    public boolean checkUsername()
     {
-
+        if (iView instanceof Activity) {
+            try {
+                return iModel.checkUsername(((Activity) iView), mInfo.getUserName());
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        else {
+            Log.d(TAG, "iView is not implemted");
+            return false;
+        }
     }
+
+    @Override
+    public void addAccount( )
+    {
+        if (iView instanceof Activity) {
+            iModel.addAccount(((Activity) iView), mInfo);
+        }
+        else {
+            Log.d(TAG, "iView is not implemted");
+        }
+    }
+
+    @Override
+    public boolean checkRequiredField() {
+        boolean invalidFlag = false; // = true if any field is emply
+        if (invalidFlag == false && mInfo.getFullName().isEmpty())
+            invalidFlag = true;
+        if (invalidFlag == false && mInfo.getUserName().isEmpty())
+            invalidFlag = true;
+        if (invalidFlag == false && mInfo.getPassword().isEmpty())
+            invalidFlag = true;
+        if (invalidFlag == false && mInfo.getFullName().isEmpty())
+            invalidFlag = true;
+        if (invalidFlag == false && mInfo.getEmail().isEmpty())
+            invalidFlag = true;
+        if (invalidFlag == true)
+            iView.showNote("Please fill all field");
+        return !invalidFlag;
+    }
+
+    @Override
+    public void setUserName() {
+        mInfo.setUserName(iView.getUserName());
+    }
+
+    @Override
+    public void setPassword() {
+        mInfo.setPassword(iView.getPassword());
+    }
+
+    @Override
+    public void setFullName() {
+        mInfo.setFullName(iView.getFullName());
+    }
+
+    @Override
+    public void setBirthday() {
+        mInfo.setBirthDay(iView.getBirthday());
+    }
+
+    @Override
+    public void setEmail() {
+        mInfo.setEmail(iView.getEmail());
+    }
+
+    @Override
+    public void setGender() {
+        mInfo.setGender(iView.getGender());
+    }
+
+    @Override
+    public void setMemberClass() {
+        mInfo.setMemberClass(iView.getMemberClass());
+    }
+
+    @Override
+    public void setOccupation() {
+        mInfo.setOccupation(iView.getOccupation());
+    }
+
+
 }

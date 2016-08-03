@@ -3,6 +3,8 @@
     <string name="register_account_title">Register User Account</string>
     <string name="tag_spinner_item">spinner_item</string>
     <string name="personalize_card">Personalize Card</string>
+    <string name="username">User Name</string>
+    <string name="password" />
 
     <!--Items for gender spinner-->
     <string-array name="genders">

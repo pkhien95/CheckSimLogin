@@ -13,14 +13,14 @@ import java.util.Calendar;
 public class UserInfo extends BaseObservable {
 
     // region Field
-    private String userName;
-    private String password;
-    private String fullName;
-    private Calendar birthDay;
-    private String email;
-    private String gender;
-    private String memberClass;
-    private String Occupation;
+    private String userName = "";
+    private String password = "";
+    private String fullName = "";
+    private long birthDay;
+    private String email = "";
+    private String gender = "";
+    private String memberClass = "";
+    private String Occupation = "";
     //endregion - Field
 
 
@@ -53,11 +53,11 @@ public class UserInfo extends BaseObservable {
     }
 
     @Bindable
-    public Calendar getBirthDay() {
+    public long getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Calendar birthDay) {
+    public void setBirthDay(long birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -96,6 +96,8 @@ public class UserInfo extends BaseObservable {
     public void setOccupation(String occupation) {
         Occupation = occupation;
     }
+
+
 
     // endregion - Getter/Setter
 }
