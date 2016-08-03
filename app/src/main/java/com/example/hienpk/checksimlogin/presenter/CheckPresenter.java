@@ -6,6 +6,7 @@ import android.telephony.TelephonyManager;
 
 import com.example.hienpk.checksimlogin.view.ICheckView;
 import com.example.hienpk.checksimlogin.view.LoginActivity;
+import com.example.hienpk.checksimlogin.view.RegisterActivity;
 
 /**
  * Created by HienPK on 8/2/2016.
@@ -60,6 +61,7 @@ public class CheckPresenter implements ICheckPresenter
     @Override
     public void onStartRegisterActivity()
     {
-        //
+        Intent intent = new Intent(view.getContext(), RegisterActivity.class);
+        view.getContext().startActivity(intent);
     }
 }

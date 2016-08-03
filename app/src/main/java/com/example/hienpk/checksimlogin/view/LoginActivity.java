@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
         switch (view.getId())
         {
             case R.id.btnPersonalize:
-                presenter.checkUsername();
-                presenter.checkPassword();
+                presenter.checkUsername(txtUsername.getText().toString());
+                presenter.checkPassword(txtUsername.getText().toString(), txtPassword.getText().toString());
                 break;
         }
     }

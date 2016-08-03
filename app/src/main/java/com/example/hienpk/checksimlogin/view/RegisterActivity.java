@@ -3,16 +3,17 @@ package com.example.hienpk.checksimlogin.view;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.hienpk.checksimlogin.R;
 
-public class RegiseterAccountActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements IRegisterView
+{
 
     private ActionBar mActionBar;
     private Spinner mSpinnerGender;
@@ -20,11 +21,12 @@ public class RegiseterAccountActivity extends AppCompatActivity {
     private Spinner mSpinnerOccupation;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regiseter_account);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         mActionBar = getSupportActionBar();
         mActionBar.setTitle(R.string.register_account_title);
@@ -52,5 +54,11 @@ public class RegiseterAccountActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(layoutItem);
         spinner.setAdapter(adapter);
         return spinner;
+    }
+
+    @Override
+    public void showNote(String note)
+    {
+
     }
 }
