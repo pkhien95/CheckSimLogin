@@ -5,5 +5,5 @@
     <dimen name="app_bar_size">60dp</dimen>
     <dimen name="text_box_height">51dp</dimen>
     <dimen name="spinner_width">260dp</dimen>
-    <dimen name="label_textsize">12sp</dimen>
+    <dimen name="label_textsize">14sp</dimen>
 </resources>

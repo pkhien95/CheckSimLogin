@@ -7,7 +7,7 @@ import com.example.hienpk.checksimlogin.model.UserInfo;
  */
 public interface IRegisterPresenter
 {
-    void checkUsername(String userName);
+    boolean checkUsername(String userName);
 
     void addAccount(UserInfo userInfo);
 }
