@@ -1,8 +1,6 @@
 package com.example.hienpk.checksimlogin.view;
 
-import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.IdRes;
@@ -22,12 +20,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.hienpk.checksimlogin.R;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import com.example.hienpk.checksimlogin.presenter.IRegisterPresenter;
 import com.example.hienpk.checksimlogin.presenter.RegisterPresenter;
+
+import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity
         implements IRegisterView, TextWatcher, View.OnClickListener, View.OnFocusChangeListener {

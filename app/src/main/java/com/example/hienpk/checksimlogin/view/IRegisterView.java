@@ -1,7 +1,5 @@
 package com.example.hienpk.checksimlogin.view;
 
-import java.util.Calendar;
-
 /**
  * Created by HienPK on 8/3/2016.
  */

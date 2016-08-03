@@ -1,16 +1,11 @@
 package com.example.hienpk.checksimlogin.model;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-
-import java.util.Calendar;
-
 /**
  * Created by TungHH on 8/2/2016.
  *
  *
  */
-public class UserInfo extends BaseObservable {
+public class UserInfo {
 
     // region Field
     private String userName = "";
@@ -25,7 +20,6 @@ public class UserInfo extends BaseObservable {
 
 
     // region Getter/Setter
-    @Bindable
     public String getUserName() {
         return userName;
     }
@@ -34,7 +28,6 @@ public class UserInfo extends BaseObservable {
         this.userName = userName;
     }
 
-    @Bindable
     public String getPassword() {
         return password;
     }
@@ -43,7 +36,6 @@ public class UserInfo extends BaseObservable {
         this.password = password;
     }
 
-    @Bindable
     public String getFullName() {
         return fullName;
     }
@@ -52,7 +44,6 @@ public class UserInfo extends BaseObservable {
         this.fullName = fullName;
     }
 
-    @Bindable
     public long getBirthDay() {
         return birthDay;
     }
@@ -61,7 +52,6 @@ public class UserInfo extends BaseObservable {
         this.birthDay = birthDay;
     }
 
-    @Bindable
     public String getEmail() {
         return email;
     }
@@ -70,7 +60,6 @@ public class UserInfo extends BaseObservable {
         this.email = email;
     }
 
-    @Bindable
     public String getGender() {
         return gender;
     }
@@ -79,7 +68,6 @@ public class UserInfo extends BaseObservable {
         this.gender = gender;
     }
 
-    @Bindable
     public String getMemberClass() {
         return memberClass;
     }
@@ -88,7 +76,6 @@ public class UserInfo extends BaseObservable {
         this.memberClass = memberClass;
     }
 
-    @Bindable
     public String getOccupation() {
         return Occupation;
     }
@@ -96,8 +83,6 @@ public class UserInfo extends BaseObservable {
     public void setOccupation(String occupation) {
         Occupation = occupation;
     }
-
-
 
     // endregion - Getter/Setter
 }
