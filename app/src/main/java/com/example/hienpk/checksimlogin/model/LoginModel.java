@@ -44,10 +44,15 @@ public class LoginModel implements ILoginModel
                 new String[]{"" + username},
                 null);
 
-        if (cs.getString(0).equals(password))
+        if (cs != null && cs.getCount() > 0)
         {
-            return true;
+            if (cs.getString(0).equals(password))
+            {
+                return true;
+            }
         }
+
+
         return false;
     }
 }
