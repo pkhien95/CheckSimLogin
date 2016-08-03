@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.hienpk.checksimlogin.view.RegiseterAccountActivity"
-    android:background="@android:color/white">
+                android:background="@android:color/white"
+                tools:context="com.example.hienpk.checksimlogin.view.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
@@ -48,21 +47,22 @@
 
         <LinearLayout
             android:id="@+id/section_1"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_vertical_margin"
-            android:paddingTop="10dp"
-            android:background="@android:color/white">
+            android:paddingTop="10dp">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_box_height"
-                android:hint="UserName"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp">
+                android:hint="UserName">
 
                 <EditText
+                    android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/tbUserName" />
@@ -71,11 +71,12 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_box_height"
-                android:hint="Password"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp">
+                android:hint="Password">
 
                 <EditText
+                    android:id="@+id/txtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/tbPassword" />
@@ -84,21 +85,22 @@
 
         <LinearLayout
             android:id="@+id/section_2"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_layout"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_vertical_margin"
             android:paddingTop="10dp">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:hint="Full Name"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp">
+                android:hint="Full Name">
 
                 <EditText
+                    android:id="@+id/txtFullName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/tbFullName" />
@@ -107,24 +109,27 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_box_height"
-                android:hint="Date of Birth"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp">
+                android:hint="Date of Birth">
 
                 <EditText
+                    android:id="@+id/txtDateOfBirth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/tbBirthday" />
+                    android:id="@+id/tbBirthday"
+                    android:editable="false" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_box_height"
-                android:hint="Email"
+                android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp">
+                android:hint="Email">
 
                 <EditText
+                    android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/tbEmail" />
@@ -133,26 +138,26 @@
 
         <LinearLayout
             android:id="@+id/section_3"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_vertical_margin"
-            android:paddingTop="10dp"
-            android:elevation="2dp">
+            android:paddingTop="10dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tv_gender"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="0.4"
                     android:text="Gender"
-                    android:layout_gravity="center_vertical"
                     android:textSize="@dimen/label_textsize"/>
                 <Spinner
                     android:id="@+id/spinner_gender"
@@ -170,9 +175,9 @@
                     android:id="@+id/tv_class_member"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="0.4"
                     android:text="Member Class"
-                    android:layout_gravity="center_vertical"
                     android:textSize="@dimen/label_textsize"/>
                 <Spinner
                     android:id="@+id/spinner_class_member"
@@ -190,9 +195,9 @@
                     android:id="@+id/tv_occupation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="0.4"
                     android:text="Occupation"
-                    android:layout_gravity="center_vertical"
                     android:textSize="@dimen/label_textsize"/>
                 <Spinner
                     android:id="@+id/spinner_occupation"
@@ -203,18 +208,24 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <Button
             android:id="@+id/btnPersonalize"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/gradient_button"
             android:text="@string/personalize_card"
-            android:textSize="12sp"
+                android:textSize="14sp"
             android:textStyle="bold"/>
+
+    </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import com.example.hienpk.checksimlogin.model.LoginModel;
 import com.example.hienpk.checksimlogin.model.RegisterModel;
 import com.example.hienpk.checksimlogin.model.UserInfo;
 import com.example.hienpk.checksimlogin.view.IRegisterView;
+import com.example.hienpk.checksimlogin.model.RegisterModel;
 
 import java.util.Calendar;
 import java.util.zip.Inflater;

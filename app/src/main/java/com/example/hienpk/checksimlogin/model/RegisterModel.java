@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Debug;
 import android.util.Log;
+import com.example.hienpk.checksimlogin.presenter.RegisterPresenter;
 
 /**
  * Created by HienPK on 8/3/2016.
@@ -13,6 +14,13 @@ import android.util.Log;
 public class RegisterModel implements IRegisterModel
 {
     private static final String TAG = RegisterModel.class.getSimpleName();
+
+    RegisterPresenter presenter;
+
+    public RegisterModel(RegisterPresenter presenter)
+    {
+        this.presenter = presenter;
+    }
 
     @Override
     public void addAccount(Context context, UserInfo userInfo)

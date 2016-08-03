@@ -1,9 +1,12 @@
 package com.example.hienpk.checksimlogin.view;
 
+import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
-import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,13 +18,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.hienpk.checksimlogin.R;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import com.example.hienpk.checksimlogin.presenter.IRegisterPresenter;
 import com.example.hienpk.checksimlogin.presenter.RegisterPresenter;
 
 public class RegisterActivity extends AppCompatActivity implements IRegisterView, TextWatcher, View.OnClickListener {
-
+    RegisterPresenter presenter;
     private IRegisterPresenter iRegisterPresenter;
 
     private ActionBar mActionBar;
@@ -35,12 +43,16 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     private EditText mBirthday;
     private EditText mEmail;
 
+    private Button btnPersonalize;
+    private EditText txtUserName, txtPassword, txtFullName, txtDateOfBirth, txtEmail;
+    private Calendar calendar;
+
     private Button mRegisterButton;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regiseter_account);
+        setContentView(R.layout.activity_register);
 
         initView();
         initEventListener();
@@ -73,6 +85,8 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         mRegisterButton = (Button)findViewById(R.id.btnPersonalize);
 
         iRegisterPresenter = new RegisterPresenter(this);
+        txtDateOfBirth.setOnFocusChangeListener(this);
+        calendar = Calendar.getInstance();
     }
 
     private void initEventListener() {
@@ -133,7 +147,24 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     @Override
     public void showNote(String note)
     {
+        Toast.makeText(getApplicationContext(), note, Toast.LENGTH_SHORT);
+    }
 
+    @TargetApi(Build.VERSION_CODES.N)
+    @Override
+    public void onClick(View view)
+    {
+        switch (view.getId())
+        {
+            case R.id.btnPersonalize:
+                UserInfo userInfo = new UserInfo();
+                userInfo.setUserName(txtUserName.getText().toString());
+                userInfo.setPassword(txtPassword.getText().toString());
+                userInfo.setFullName(txtFullName.getText().toString());
+                SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yy", Locale.ENGLISH);
+                try
+                {
+                    calendar.setTime(sdf.parse(txtDateOfBirth.getText().toString()));
     }
 
     @Override
@@ -203,6 +234,25 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
                         && iRegisterPresenter.checkUsername())
                     iRegisterPresenter.addAccount();
                 break;
+        }
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean focus)
+    {
+        if (focus)
+        {
+            DatePickerDialog dlg = new DatePickerDialog(RegisterActivity.this, new DatePickerDialog.OnDateSetListener()
+            {
+                @Override
+                public void onDateSet(DatePicker datePicker, int year, int month, int date)
+                {
+//                    calendar.set(year, month, date);
+                    txtDateOfBirth.setText((month + 1) + "/" + date + "/" + year);
+                }
+
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            dlg.show();
         }
     }
 }
