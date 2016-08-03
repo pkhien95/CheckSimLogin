@@ -15,16 +15,10 @@ public class RegisterModel implements IRegisterModel
 {
     private static final String TAG = RegisterModel.class.getSimpleName();
 
-    RegisterPresenter presenter;
-
-    public RegisterModel(RegisterPresenter presenter)
-    {
-        this.presenter = presenter;
-    }
 
     @Override
-    public void addAccount(Context context, UserInfo userInfo)
-    {
+    public void addAccount(Context context, UserInfo userInfo){
+
         // init content values
         ContentValues values = new ContentValues();
         values.put(UserInfoEntry.COLUMN_USER_NAME, userInfo.getUserName());
@@ -54,7 +48,7 @@ public class RegisterModel implements IRegisterModel
         Cursor cs = context.getContentResolver().query(
                 uri,
                 new String[]{UserInfoEntry._ID},
-                UserInfoEntry.COLUMN_DOB + "=?",
+                UserInfoEntry.COLUMN_USER_NAME + "=?",
                 new String[]{username},
                 null);
 

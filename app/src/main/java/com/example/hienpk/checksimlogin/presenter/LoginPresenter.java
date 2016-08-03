@@ -21,12 +21,14 @@ public class LoginPresenter implements ILoginPresenter
     }
 
     @Override
-    public void checkUsername(String username)
+    public boolean checkUsername(String username)
     {
-        if (!model.checkUsername(username))
-        {
-            view.showMessage("Username is not valid");
-        }
+        boolean flag = model.checkUsername(username);
+        if (flag)
+            return true;
+        view.showMessage("Username is not valid");
+        return false;
+
     }
 
     @Override
@@ -35,6 +37,10 @@ public class LoginPresenter implements ILoginPresenter
         if (!model.checkPassword(username, password))
         {
             view.showMessage("Password does not match");
+        }
+        else
+        {
+            view.showMessage("Login success");
         }
     }
 

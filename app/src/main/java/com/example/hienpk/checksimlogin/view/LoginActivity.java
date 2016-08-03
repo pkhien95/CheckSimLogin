@@ -12,8 +12,7 @@ import android.widget.TextView;
 import com.example.hienpk.checksimlogin.R;
 import com.example.hienpk.checksimlogin.presenter.LoginPresenter;
 
-public class LoginActivity extends AppCompatActivity implements View.OnFocusChangeListener, ILoginView, View.OnClickListener
-{
+public class LoginActivity extends AppCompatActivity implements View.OnFocusChangeListener, ILoginView, View.OnClickListener {
     private Toolbar toolbar;
     private TextView tvNote;
     private EditText txtUsername, txtPassword;
@@ -21,8 +20,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     private LoginPresenter presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -42,8 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
 
 
     @Override
-    public void onFocusChange(View view, boolean b)
-    {
+    public void onFocusChange(View view, boolean b) {
 //        switch (view.getId())
 //        {
 //            case R.id.txtUsername:
@@ -71,25 +68,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnFocusChan
     }
 
     @Override
-    public Activity getContext()
-    {
+    public Activity getContext() {
         return LoginActivity.this;
     }
 
     @Override
-    public void showMessage(String message)
-    {
+    public void showMessage(String message) {
         tvNote.setText(message);
     }
 
     @Override
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btnPersonalize:
-                presenter.checkUsername(txtUsername.getText().toString());
-                presenter.checkPassword(txtUsername.getText().toString(), txtPassword.getText().toString());
+
+                if (presenter.checkUsername(txtUsername.getText().toString()))
+                    presenter.checkPassword(txtUsername.getText().toString(), txtPassword.getText().toString());
                 break;
         }
     }

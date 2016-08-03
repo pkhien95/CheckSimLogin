@@ -24,4 +24,6 @@ public interface IRegisterView
     String getMemberClass();
 
     String getOccupation();
+
+    void registerSuccess();
 }

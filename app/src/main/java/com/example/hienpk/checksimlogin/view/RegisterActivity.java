@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,7 +29,8 @@ import java.util.Locale;
 import com.example.hienpk.checksimlogin.presenter.IRegisterPresenter;
 import com.example.hienpk.checksimlogin.presenter.RegisterPresenter;
 
-public class RegisterActivity extends AppCompatActivity implements IRegisterView, TextWatcher, View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity
+        implements IRegisterView, TextWatcher, View.OnClickListener, View.OnFocusChangeListener {
     RegisterPresenter presenter;
     private IRegisterPresenter iRegisterPresenter;
 
@@ -43,8 +45,6 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     private EditText mBirthday;
     private EditText mEmail;
 
-    private Button btnPersonalize;
-    private EditText txtUserName, txtPassword, txtFullName, txtDateOfBirth, txtEmail;
     private Calendar calendar;
 
     private Button mRegisterButton;
@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         mRegisterButton = (Button)findViewById(R.id.btnPersonalize);
 
         iRegisterPresenter = new RegisterPresenter(this);
-        txtDateOfBirth.setOnFocusChangeListener(this);
+        mBirthday.setOnFocusChangeListener(this);
         calendar = Calendar.getInstance();
     }
 
@@ -147,25 +147,9 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     @Override
     public void showNote(String note)
     {
-        Toast.makeText(getApplicationContext(), note, Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(), note, Toast.LENGTH_SHORT).show();
     }
 
-    @TargetApi(Build.VERSION_CODES.N)
-    @Override
-    public void onClick(View view)
-    {
-        switch (view.getId())
-        {
-            case R.id.btnPersonalize:
-                UserInfo userInfo = new UserInfo();
-                userInfo.setUserName(txtUserName.getText().toString());
-                userInfo.setPassword(txtPassword.getText().toString());
-                userInfo.setFullName(txtFullName.getText().toString());
-                SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yy", Locale.ENGLISH);
-                try
-                {
-                    calendar.setTime(sdf.parse(txtDateOfBirth.getText().toString()));
-    }
 
     @Override
     public String getUserName() {
@@ -184,7 +168,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
     @Override
     public long getBirthday() {
-        return 0;
+        return calendar.getTimeInMillis();
     }
 
     @Override
@@ -205,6 +189,12 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     @Override
     public String getOccupation() {
         return (String) mSpinnerOccupation.getSelectedItem();
+    }
+
+    @Override
+    public void registerSuccess() {
+        showNote("Registered");
+        this.finish();
     }
 
     @Override
@@ -247,8 +237,9 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
                 @Override
                 public void onDateSet(DatePicker datePicker, int year, int month, int date)
                 {
-//                    calendar.set(year, month, date);
-                    txtDateOfBirth.setText((month + 1) + "/" + date + "/" + year);
+                    mBirthday.setText((month + 1) + "/" + date + "/" + year);
+                    calendar.set(year, month, date);
+                    iRegisterPresenter.setBirthday();
                 }
 
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
@@ -256,3 +247,4 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         }
     }
 }
+

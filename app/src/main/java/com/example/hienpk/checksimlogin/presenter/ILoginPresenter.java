@@ -7,7 +7,7 @@ import android.content.Context;
  */
 public interface ILoginPresenter
 {
-    void checkUsername(String username);
+    boolean checkUsername(String username);
 
     void checkPassword(String username, String password);
 

@@ -62,10 +62,9 @@
                 android:hint="UserName">
 
                 <EditText
-                    android:id="@+id/txtUsername"
+                    android:id="@+id/tbUserName"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tbUserName" />
+                    android:layout_height="match_parent"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -76,10 +75,9 @@
                 android:hint="Password">
 
                 <EditText
-                    android:id="@+id/txtPassword"
+                    android:id="@+id/tbPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tbPassword" />
+                    android:layout_height="match_parent"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -100,10 +98,9 @@
                 android:hint="Full Name">
 
                 <EditText
-                    android:id="@+id/txtFullName"
+                    android:id="@+id/tbFullName"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tbFullName" />
+                    android:layout_height="match_parent" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -114,10 +111,9 @@
                 android:hint="Date of Birth">
 
                 <EditText
-                    android:id="@+id/txtDateOfBirth"
+                    android:id="@+id/tbBirthday"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/tbBirthday"
                     android:editable="false" />
             </android.support.design.widget.TextInputLayout>
 
@@ -129,10 +125,9 @@
                 android:hint="Email">
 
                 <EditText
-                    android:id="@+id/txtEmail"
+                    android:id="@+id/tbEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tbEmail" />
+                    android:layout_height="match_parent" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 

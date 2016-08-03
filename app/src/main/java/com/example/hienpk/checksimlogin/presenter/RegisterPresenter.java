@@ -3,16 +3,10 @@ package com.example.hienpk.checksimlogin.presenter;
 import android.app.Activity;
 import android.util.Log;
 
-import com.example.hienpk.checksimlogin.model.ILoginModel;
 import com.example.hienpk.checksimlogin.model.IRegisterModel;
-import com.example.hienpk.checksimlogin.model.LoginModel;
 import com.example.hienpk.checksimlogin.model.RegisterModel;
 import com.example.hienpk.checksimlogin.model.UserInfo;
 import com.example.hienpk.checksimlogin.view.IRegisterView;
-import com.example.hienpk.checksimlogin.model.RegisterModel;
-
-import java.util.Calendar;
-import java.util.zip.Inflater;
 
 /**
  * Created by HienPK on 8/3/2016.
@@ -36,7 +30,10 @@ public class RegisterPresenter implements IRegisterPresenter
     {
         if (iView instanceof Activity) {
             try {
-                return iModel.checkUsername(((Activity) iView), mInfo.getUserName());
+                boolean flag = iModel.checkUsername(((Activity) iView), mInfo.getUserName());
+                if (flag == false)
+                    iView.showNote("User name is exist");
+                return flag;
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
@@ -53,6 +50,7 @@ public class RegisterPresenter implements IRegisterPresenter
     {
         if (iView instanceof Activity) {
             iModel.addAccount(((Activity) iView), mInfo);
+            iView.registerSuccess();
         }
         else {
             Log.d(TAG, "iView is not implemted");

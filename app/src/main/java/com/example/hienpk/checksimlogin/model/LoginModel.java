@@ -24,8 +24,8 @@ public class LoginModel implements ILoginModel
         String[] projections = new String[UserInfoProvider.USERINFO_PROJECTION_MAP.size()];
         Cursor cs = presenter.getContext().getContentResolver().query(uri,
                 UserInfoProvider.USERINFO_PROJECTION_MAP.values().toArray(projections),
-                "_id=?",
-                new String[]{"" + 1},
+                "Username=?",
+                new String[]{username},
                 null);
         if (cs.getCount() > 0)   //Username existed
         {
@@ -44,11 +44,11 @@ public class LoginModel implements ILoginModel
                 new String[]{"" + username},
                 null);
 
-        if (cs != null && cs.getCount() > 0)
-        {
-            if (cs.getString(0).equals(password))
-            {
-                return true;
+        if (cs != null && cs.getCount() > 0){
+            if (cs.moveToFirst()){
+                if (cs.getString(0).equals(password)){
+                    return true;
+                }
             }
         }
 
